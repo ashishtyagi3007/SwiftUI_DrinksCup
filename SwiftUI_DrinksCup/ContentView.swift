@@ -8,14 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    var color = Color(hex: "155498")
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        ZStack {
+            DrinkHolderCupShape()
+                .stroke(lineWidth: 3)
+                .shadow(radius: 4)
+            ZStack {
+                color
+            }
+            .mask(DrinkHolderCupShape())
+            CapView()
+                .shadow(radius: 2)
+        }
+        .scaleEffect(1.25)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ZStack {
+            Color.lightBlue
+                .edgesIgnoringSafeArea(.all)
+            ContentView()
+        }
+        
     }
 }
